@@ -127,4 +127,16 @@ Para replicar este projeto sem auxílio de IA, siga esta ordem lógica:
 3.  Configurar o **DomPDF** para geração de relatórios técnicos em PDF.
 
 ---
+
+## 3. Nota de Infraestrutura
+
+Além das tabelas de negócio detalhadas acima, o banco de dados contém tabelas nativas do framework Laravel, essenciais para o suporte operacional do sistema:
+
+- **Autenticação e Sessões:** `sessions`, `password_reset_tokens`.
+- **Performance e Cache:** `cache`, `cache_locks`.
+- **Processamento em Segundo Plano:** `jobs`, `job_batches`, `failed_jobs`.
+
+Estas tabelas seguem o padrão de segurança e escalabilidade do Laravel e não foram incluídas no diagrama ERD para manter o foco na lógica de negócio do Centro de Dia para Idosos.
+
+---
 *Este documento foi gerado para auxiliar na manutenção e evolução do sistema Gestão CDI.*
