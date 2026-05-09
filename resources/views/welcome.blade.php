@@ -23,7 +23,6 @@
             <nav class="flex items-center space-x-4">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ route('user.index') }}" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Equipe / Funcionários</a>
                         <a href="{{ route('home') }}" class="btn-primary">Acessar Painel</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors">Entrar</a>
@@ -98,7 +97,10 @@
 
                 <div class="mt-16 flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
                     @auth
-                        <a href="{{ route('user.index') }}" class="btn-primary px-8 py-4 text-sm">Ir para Gerenciamento</a>
+                        @can('admin-access')
+                            <a href="{{ route('user.index') }}" class="btn-primary px-8 py-4 text-sm">Ir para Gerenciamento</a>
+                        @endcan
+                        <a href="{{ route('home') }}" class="btn-primary px-8 py-4 text-sm {{ Auth::user()->can('admin-access') ? 'bg-slate-800 hover:bg-slate-900' : '' }}">Acessar Painel</a>
                     @else
                         <a href="{{ route('login') }}" class="btn-primary px-8 py-4 text-sm">Entrar no Sistema</a>
                         <a href="{{ route('register') }}" class="inline-flex items-center px-8 py-4 bg-white border border-slate-200 rounded-lg font-bold text-sm text-slate-700 shadow-sm hover:bg-slate-50 transition-colors">Criar Nova Conta</a>
