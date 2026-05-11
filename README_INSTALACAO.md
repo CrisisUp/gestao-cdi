@@ -1,174 +1,124 @@
-# Guia de Instalação: Gestão CDI no Windows 🪟
+# Guia de Instalação: Gestão CDI no Windows 11 🪟
 
-Este guia detalha como instalar e rodar o **Sistema de Gestão CDI** localmente no computador da instituição utilizando o ambiente **Laragon**.
-
----
-
-## 🛠️ Requisitos Iniciais
-
-Antes de começar, certifique-se de ter instalado:
-
-1. **Laragon Full:** [Baixar aqui](https://laragon.org/download/) (Recomendado para PHP 8.2+)
-2. **Git para Windows:** [Baixar aqui](https://git-scm.com/download/win)
+Este guia detalha como instalar e rodar o **Sistema de Gestão CDI** localmente. Recomendamos fortemente o uso do **Docker** para garantir que todas as versões (PHP 8.4, etc.) funcionem corretamente sem conflitos no seu Windows.
 
 ---
 
-## 🚀 Passo a Passo da Instalação
+## 🐳 Opção 1: Instalação via Docker (RECOMENDADO)
 
-### 1. Preparar a Pasta do Projeto
+Esta é a forma mais rápida e segura. O Docker criará um ambiente isolado com tudo que o sistema precisa.
 
-1. Abra o Laragon.
-2. Clique no ícone de pasta ou navegue até `C:\laragon\www`.
-3. Cole a pasta do sistema nesta localização. (Ex: `C:\laragon\www\gestao-cdi`).
+### 1. Pré-requisitos
 
-### 2. Configurar o Ambiente (Terminal)
+* **Docker Desktop:** [Baixar aqui](https://www.docker.com/products/docker-desktop/). Certifique-se de habilitar o **WSL2** durante a instalação.
+* **Git para Windows:** [Baixar aqui](https://git-scm.com/download/win).
 
-No painel do Laragon, clique no botão **"Terminal"** e digite os seguintes comandos:
+### 2. Passo a Passo
 
-## Entrar na pasta do projeto
+1. Abra o **Terminal do Windows** (PowerShell) na pasta onde deseja baixar o projeto.
+2. Clone o repositório:
 
-```bash
-cd gestao-cdi
-```
+   ```bash
+   git clone <url-do-seu-repositorio>
+   cd gestao-cdi
+   ```
 
-## Instalar dependências do PHP
+3. Prepare o arquivo de configuração:
 
-```bash
-composer install
-```
+   ```bash
+   copy .env.example .env
+   ```
 
-## Instalar dependências de Estilização
-
-```bash
-npm install
-```
-
-## Gerar a chave de segurança
-
-```bash
-php artisan key:generate
-```
-
-## Criar o arquivo de banco de dados (se não existir)
-
-```bash
-copy .env.example .env
-```
-
-## (Lembre-se de verificar se DB_CONNECTION está como sqlite no .env)
-
-### 3. Banco de Dados e Assets
-
-Ainda no terminal do Laragon:
-
-## Criar as tabelas no banco de dados
-
-```bash
-php artisan migrate
-```
-
-## Compilar os arquivos visuais para produção
-
-```bash
-npm run build
-```
-
-## Criar o link para as fotos dos idosos aparecerem
-
-```bash
-    php artisan storage:link
-```
-
-### 4. Acessar o Sistema
-
-1. No Laragon, clique em **"Stop"** e depois em **"Start All"**.
-2. O Laragon detectará o projeto e você poderá acessar pelo navegador no endereço:
-   👉 **<http://gestao-cdi.test>**
-
-   ---
-
-   ## 🐳 Opção 2: Instalação via Docker (Recomendado)
-
-   Se você utiliza **Docker Desktop**, a instalação é ainda mais rápida e isolada.
-
-   ### 1. Subir os Containers
-
-   Na pasta do projeto, abra o terminal e rode:
+4. Suba os containers (o primeiro build pode demorar alguns minutos):
 
    ```bash
    docker-compose up -d --build
    ```
 
-   ### 2. Configurar o Sistema (Apenas na primeira vez)
-
-   Rode os comandos dentro do container para preparar o banco e as pastas:
+5. Finalize a configuração inicial (dentro do container):
 
    ```bash
-   docker exec -it gestao-cdi-app composer install
    docker exec -it gestao-cdi-app php artisan key:generate
    docker exec -it gestao-cdi-app php artisan migrate
    docker exec -it gestao-cdi-app php artisan storage:link
    ```
 
-   ### 3. Acessar
+### 3. Acessar
 
-   O sistema estará disponível em:
-   👉 **<http://localhost:8000>**
-
-   ---
-
-   ## 🛡️ Criando o Administrador Inicial
-
-Para conseguir gerenciar a equipe, você precisa promover o primeiro usuário cadastrado para Administrador. No terminal do Laragon, rode:
-
-```bash
-php artisan cdi:promote-admin seu-email@exemplo.com
-```
+O sistema estará disponível em:
+👉 **[http://localhost:8000](http://localhost:8000)**
 
 ---
 
-## 💾 Rotina de Backup (IMPORTANTE)
+## 💻 Opção 2: Instalação Manual (Laragon / Herd)
 
-Como o sistema armazena dados sensíveis, siga esta rotina:
+Se preferir não usar Docker, você pode usar o Laragon (recomendado para Windows).
 
-1. Vá até a pasta `C:\laragon\www\gestao-cdi\database`.
-2. Copie o arquivo **`database.sqlite`**.
-3. Guarde uma cópia em um **Pendrive** ou **Nuvem** (Google Drive/OneDrive) toda sexta-feira.
-4. Caso precise trocar de computador, basta instalar o Laragon no novo e colar este arquivo de volta na mesma pasta.
+### 1. Requisitos
+
+* **Laragon Full:** [Baixar aqui](https://laragon.org/download/) (PHP 8.2 ou superior).
+* **Node.js (LTS):** [Baixar aqui](https://nodejs.org/).
+
+### 2. Passo a Passo (Manual)
+
+* Coloque a pasta do projeto em `C:\laragon\www\gestao-cdi`.
+* No Laragon, clique em **Terminal** e digite:
+
+   ```bash
+   composer install
+   npm install
+   copy .env.example .env
+   php artisan key:generate
+   php artisan migrate
+   php artisan storage:link
+   npm run build
+   ```
+
+* No Laragon, clique em **Start All**.
+* Acesse: 👉 **[http://gestao-cdi.test](http://gestao-cdi.test)**
+
+---
+
+## 🛡️ Criando o Administrador Inicial
+
+O sistema nasce "vazio" por segurança. Para acessar e gerenciar a equipe:
+
+1. Acesse o site e clique em **Register** (Cadastrar).
+2. Após criar sua conta, promova-a via terminal:
+
+   ```bash
+   # Se estiver no Docker:
+   docker exec -it gestao-cdi-app php artisan cdi:promote-admin seu-email@exemplo.com
+
+   # Se estiver no modo manual:
+   php artisan cdi:promote-admin seu-email@exemplo.com
+   ```
 
 ---
 
-## 🔧 Solução de Problemas Comuns
+## 💾 Rotina de Backup (VITAL)
 
-* **Erro 404:** Certifique-se de que o Laragon está rodando e que você digitou o endereço `.test` corretamente.
-* **Fotos não aparecem:** Verifique se você rodou o comando `php artisan storage:link`.
-* **Hora errada:** Verifique se o `APP_TIMEZONE=America/Sao_Paulo` está correto no arquivo `.env`.
-
----
-
-## 📸 Configurações de Upload de Fotos (IMPORTANTE)
-
-O sistema está configurado para aceitar fotos de até **10MB** no nível da aplicação (Laravel). No entanto, para que o servidor aceite esses arquivos (especialmente fotos de alta resolução de celulares modernos), você **deve** ajustar as configurações do seu PHP.
-
-### Como ajustar no Laragon ou Herd
-
-1. Localize o arquivo de configuração do PHP (`php.ini`).
-2. Procure as seguintes linhas e altere os valores para o recomendado abaixo:
-
-```ini
-; Tamanho máximo de um único arquivo de upload
-upload_max_filesize = 2MB
-
-; Tamanho máximo de todos os dados enviados via POST (deve ser maior ou igual ao de cima)
-post_max_size = 2MB
-
-; Limite de memória do PHP para processamento de imagens (recomendado)
-memory_limit = 256M
-```
-
-1. **Reinicie o servidor** (Laragon ou Herd) para que as mudanças entrem em vigor.
-
-> **Nota:** Se você não fizer esse ajuste, o sistema retornará o erro *"413 Content Too Large"* ou a foto simplesmente não será salva se exceder o limite padrão de 2MB do PHP.
+O banco de dados é o arquivo `database/database.sqlite`.
+**Toda sexta-feira:** Copie este arquivo para um Pendrive ou Google Drive. Se o computador quebrar, seus dados estarão salvos ali.
 
 ---
-&copy; 2026 — Documentação de Implantação Local Gestão CDI.
+
+## 📸 Configurações de Upload de Fotos
+
+Para aceitar fotos de alta qualidade de celulares modernos:
+
+1. Localize o seu `php.ini` (No Laragon: Menu > PHP > php.ini).
+2. Altere estas linhas para aceitar até 10MB:
+
+   ```ini
+   upload_max_filesize = 10M
+   post_max_size = 10M
+   memory_limit = 256M
+   ```
+
+3. Reinicie o servidor.
+
+*(No Docker, essas configurações já estão otimizadas).*
+
+---
+&copy; 2026 — Gestão CDI.

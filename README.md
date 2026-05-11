@@ -1,6 +1,6 @@
 # Gestão CDI - Centro de Dia para Idosos 🏥👴👵
 
-Este é um sistema web profissional desenvolvido com o ecossistema **Laravel** e **Tailwind CSS v4**, especializado no gerenciamento completo de Centros de Dia para Idosos (CDI). O sistema foca em acessibilidade, segurança de dados e eficiência operacional para equipes de assistência social e saúde.
+Este é um sistema web profissional desenvolvido com o ecossistema **Laravel 12** e **Tailwind CSS v4**, especializado no gerenciamento completo de Centros de Dia para Idosos (CDI). O sistema foca em acessibilidade, segurança de dados e eficiência operacional para equipes de assistência social e saúde.
 
 ---
 
@@ -8,97 +8,70 @@ Este é um sistema web profissional desenvolvido com o ecossistema **Laravel** e
 
 ### 📋 Módulo de Idosos (Beneficiários)
 
-* **Cadastro Visual:** Registro de dados pessoais com suporte a **Upload de Foto** para identificação rápida.
-* **Identificação Oficial:** Suporte obrigatório a **NIS** e CPF, com máscaras de entrada dinâmicas.
-* **Registro Único:** Geração automática de código de identificação único (Ex: `CDI-2026-0001`).
-* **Prontuário Individual:** Ficha técnica detalhada com dados de saúde (alergias, medicamentos) e contatos de emergência.
-* **Auditoria de Intercorrências:** Timeline de ocorrências com registro automático de qual profissional fez a anotação.
+* **Cadastro Visual:** Registro com upload de foto para identificação rápida.
+* **Privacidade:** Máscaras dinâmicas de CPF/NIS alinhadas com a LGPD.
+* **Prontuário Digital:** Ficha técnica de saúde, medicamentos e contatos de emergência.
+* **Geração de Registro:** Código único automático (Ex: `CDI-2026-0001`).
 
-### 📅 Agenda de Atividades e Oficinas
+### ✅ Operacional e Frequência
 
-* **Cronograma Semanal:** Gestão de oficinas (Fisioterapia, Música, Artesanato, etc) com definição de facilitador, dia e horário.
-* **Gestão de Participantes:** Vínculo individual de idosos a atividades específicas para controle de engajamento.
+* **Chamada Inteligente:** Registro de presença/ausência em lote para oficinas e atividades.
+* **Ponto da Equipe:** Controle de jornada dos funcionários com relatórios mensais.
+* **Timeline:** Auditoria automática de todas as alterações feitas nos registros.
 
-### ✅ Controle de Frequência e Ponto
+### 📄 Relatórios Profissionais
 
-* **Chamada Diária:** Tabela inteligente para registro de presença/ausência em lote com anotações de intercorrência.
-* **Ponto da Equipe:** Registro de entrada e saída dos funcionários diretamente no Dashboard, com contador de "Equipe no Posto" em tempo real.
-
-### 🚑 Módulo de Encaminhamentos (Referência)
-
-* **Fluxo de Saída:** Registro de idosos encaminhados para hospitais, UPAs, CRAS ou especialistas.
-* **Classificação de Risco:** Níveis de prioridade (Urgente, Programado, Rotina) com histórico consolidado no prontuário.
-
-### 📄 Documentação e Relatórios
-
-* **Relatórios em PDF:** Geração de relatórios mensais de frequência formatados, com visualização prévia e escolha de período.
-* **Exportação CSV:** Extração de dados da lista de idosos para Excel seguindo os filtros ativos.
-* **Print-Friendly:** Layout do prontuário otimizado para impressão direta (`Ctrl+P`).
-
----
-
-## 🎨 Design e UX (Padrão Enterprise)
-
-* **Acessibilidade:** Tipografia de alto contraste e peso visual (Slate & Emerald).
-* **Níveis de Acesso:** Diferenciação entre perfis `Administrador` e `Funcionário` para gestão da equipe profissional.
-* **Navegação:** Breadcrumbs em todas as seções e filtros avançados na listagem.
-
----
-
-## 🛣️ Estrutura de Endpoints (Rotas)
-
-O sistema está organizado em módulos lógicos protegidos por autenticação:
-
-### 👴 Gestão de Idosos
-
-* `GET /idosos` : Listagem com filtros e miniaturas de fotos.
-* `GET /idosos/{id}` : Prontuário eletrônico e timeline de saúde.
-* `GET /idosos/exportar-csv` : BI e relatórios administrativos.
-
-### 🗓️ Atividades e Oficinas
-
-* `GET /atividades` : Cronograma geral de oficinas.
-* `GET /atividades/{id}` : Gestão de participantes e detalhes da oficina.
-
-### 📅 Operacional e Ponto
-
-* `GET /frequencia` : Interface de chamada diária em lote.
-* `POST /ponto/entrada` | `POST /ponto/saida` : Controle de jornada da equipe.
+* **PDFs Oficiais:** Geração de relatórios de movimentação mensal (Controle Social).
+* **Exportação BI:** Extração de dados em CSV para análise em Excel.
+* **Impressão:** Layouts otimizados para prontuários físicos.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **Backend:** Laravel 12 (PHP 8.4+)
-* **Frontend:** Blade Templates & Alpine.js
-* **Estilização:** Tailwind CSS v4
-* **PDF:**Barryvdh Laravel-DomPDF
-* **Storage:** Local Symlink (Imagens dos beneficiários)
+* **Backend:** PHP 8.4 + Laravel 12
+* **Frontend:** Tailwind CSS v4 + Alpine.js
+* **Banco de Dados:** SQLite (Padronizado para portabilidade)
+* **Infra:** Docker (PHP-Apache)
 
 ---
 
-## 💻 Como Iniciar o Projeto Localmente
+## 🧪 Qualidade e Testes Automatizados
 
-1. **Clonar e Instalar:**
+O sistema é protegido por uma suíte robusta de **37 testes automatizados** (Feature e Unit tests), garantindo que as regras de negócio críticas nunca falhem:
 
-   ```bash
-   git clone <url-do-repositorio>
-   composer install && npm install
-   ```
+* **Relatórios Oficiais:** Validação matemática rigorosa dos cálculos de movimentação mensal e saldos para o Controle Social.
+* **Geração de Códigos:** Garantia de integridade no formato sequencial único (`CDI-AAAA-NNNN`).
+* **Ponto da Equipe:** Testes de registro de jornada, prevenção de duplicidade e exportação de PDF.
+* **Segurança:** Verificação completa de autenticação, permissões de administrador e proteção de dados (LGPD).
 
-2. **Ambiente e Banco:**
+Para validar a integridade do sistema, basta rodar:
 
-   ```bash
-   cp .env.example .env && php artisan key:generate
-   touch database/database.sqlite && php artisan migrate
-   php artisan storage:link
-   ```
-
-3. **Comandos Úteis:**
-   * **Geração de Códigos Antigos:** `php artisan cdi:gerar-codigos`
-   * **Promover Administrador:** `php artisan cdi:promote-admin {email}`
-   * **Rodar o Servidor:** `php artisan serve` & `npm run dev`
+```bash
+php artisan test
+```
 
 ---
 
+## 💻 Instalação Rápida (Docker)
+
+Para começar agora mesmo, utilize o Docker Desktop no seu Windows:
+
+```bash
+# 1. Clone o projeto
+git clone https://github.com/seu-usuario/gestao-cdi.git
+
+# 2. Configure o ambiente
+cp .env.example .env
+docker-compose up -d --build
+
+# 3. Prepare o banco
+docker exec -it gestao-cdi-app php artisan key:generate
+docker exec -it gestao-cdi-app php artisan migrate
+docker exec -it gestao-cdi-app php artisan storage:link
+```
+
+Para instruções detalhadas de instalação manual (Laragon/Windows), consulte o **[Guia de Instalação Completo](README_INSTALACAO.md)**.
+
+---
 &copy; 2026 — Gestão CDI. Sistema profissional para o cuidado e assistência à pessoa idosa.

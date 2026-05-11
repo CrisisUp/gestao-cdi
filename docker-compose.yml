@@ -4,14 +4,13 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: gestao-cdi-app
+    restart: unless-stopped
     ports:
       - "8000:80"
     volumes:
       - .:/var/www/html
-      # Persistir o banco de dados SQLite mesmo que o container seja deletado
-      - ./database/database.sqlite:/var/www/html/database/database.sqlite
-      # Persistir as fotos enviadas
-      - ./storage/app/public:/var/www/html/storage/app/public
+      # Removido os volumes individuais redundantes que podem causar erro no Windows
+      # (Se o arquivo database.sqlite não existir no host, o Docker o cria como pasta)
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
