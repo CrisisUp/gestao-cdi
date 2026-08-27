@@ -2,6 +2,10 @@ import './bootstrap';
 
 import Alpine from 'alpinejs';
 import mask from '@alpinejs/mask';
+import Chart from 'chart.js/auto';
+
+// Torna Chart.js global para uso nos scripts inline das views
+window.Chart = Chart;
 
 Alpine.plugin(mask);
 

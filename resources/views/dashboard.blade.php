@@ -61,7 +61,7 @@
                                     </svg>
                                     Jornada Finalizada
                                 </div>
-                                <a href="{{ route('ponto.historico', Auth::user()) }}" class="text-[10px] text-slate-400 font-bold uppercase mt-2 hover:text-emerald-600 transition-colors">
+                                <a href="{{ route('ponto.historico', Auth::user()) }}" class="text-xs text-slate-400 font-bold uppercase mt-2 hover:text-emerald-600 transition-colors">
                                     Ver meu histórico mensal
                                 </a>
                             </div>
@@ -160,14 +160,14 @@
 
             <!-- Atalhos Rápidos -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-slate-800 p-8 rounded-xl shadow-lg text-white">
+                <div class="bg-slate-800 dark:bg-slate-700 p-8 rounded-xl shadow-lg text-white">
                     <h4 class="text-lg font-bold mb-4">Ações Rápidas de Cadastro</h4>
                     <div class="flex flex-wrap gap-4">
                         <a href="{{ route('idoso.create') }}" class="inline-flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700 rounded-lg font-bold text-sm transition-colors">
                             + Novo Idoso
                         </a>
                         @can('admin-access')
-                            <a href="{{ route('user.create') }}" class="inline-flex items-center px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg font-bold text-sm transition-colors border border-slate-600">
+                            <a href="{{ route('user.create') }}" class="inline-flex items-center px-4 py-2 bg-slate-600 dark:bg-slate-600 hover:bg-slate-500 rounded-lg font-bold text-sm transition-colors border border-slate-500">
                                 + Nova Equipe
                             </a>
                         @endcan
@@ -190,7 +190,6 @@
     </div>
 
     @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Cores padrão CDI

@@ -158,17 +158,17 @@
                                                     {{ $idoso->nome }}
                                                 </div>
                                                 <div class="flex mt-2 space-x-2">
-                                                @if($idoso->data_desligamento)
-                                                    <span class="badge bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200 border-rose-200 dark:border-rose-800 font-black">DESLIGADO: {{ $idoso->motivo_desligamento }}</span>
-                                                @else
-                                                    @if(!$idoso->cpf)
-                                                        <span class="badge badge-warning">CPF PENDENTE</span>
+                                                    @if($idoso->data_desligamento)
+                                                        <span class="badge bg-rose-100 text-rose-800 dark:bg-rose-900 dark:text-rose-200 border-rose-200 dark:border-rose-800 font-black">DESLIGADO: {{ $idoso->motivo_desligamento }}</span>
+                                                    @else
+                                                        @if(!$idoso->cpf)
+                                                            <span class="badge badge-warning">CPF PENDENTE</span>
+                                                        @endif
+                                                        @if($idoso->medicamentos)
+                                                            <span class="badge badge-info">Uso de Medicação</span>
+                                                        @endif
                                                     @endif
-                                                    @if($idoso->medicamentos)
-                                                        <span class="badge badge-info">Uso de Medicação</span>
-                                                    @endif
-                                                @endif
-                                            </div>
+                                                </div>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">

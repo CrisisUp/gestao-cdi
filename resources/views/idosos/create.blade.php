@@ -92,35 +92,21 @@
                                 <script>
                                     function calcularFaixaEtaria(dataNascimento) {
                                         if (!dataNascimento) return;
-                                        
                                         const hoje = new Date();
                                         const nascimento = new Date(dataNascimento);
                                         let idade = hoje.getFullYear() - nascimento.getFullYear();
                                         const m = hoje.getMonth() - nascimento.getMonth();
-                                        
-                                        if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) {
-                                            idade--;
-                                        }
+                                        if (m < 0 || (m === 0 && hoje.getDate() < nascimento.getDate())) idade--;
 
-                                        let categoria = "";
-                                        let cor = "text-emerald-600";
-
-                                        if (idade >= 60 && idade <= 64) {
-                                            categoria = "60-64 anos";
-                                        } else if (idade >= 65 && idade <= 69) {
-                                            categoria = "65-69 anos";
-                                        } else if (idade >= 70 && idade <= 74) {
-                                            categoria = "70-74 anos";
-                                        } else if (idade >= 75) {
-                                            categoria = "75 anos ou mais";
-                                        } else {
-                                            categoria = "Menor de 60 anos (Não elegível)";
-                                            cor = "text-amber-600";
-                                        }
+                                        let categoria, cor;
+                                        if (idade >= 60 && idade <= 64) { categoria = "60-64 anos"; cor = "text-emerald-600"; }
+                                        else if (idade >= 65 && idade <= 69) { categoria = "65-69 anos"; cor = "text-emerald-600"; }
+                                        else if (idade >= 70 && idade <= 74) { categoria = "70-74 anos"; cor = "text-emerald-600"; }
+                                        else if (idade >= 75) { categoria = "75 anos ou mais"; cor = "text-emerald-600"; }
+                                        else { categoria = "Menor de 60 anos (Não elegível)"; cor = "text-amber-600"; }
 
                                         const display = document.getElementById('faixa_etaria_display');
                                         const texto = document.getElementById('faixa_etaria_texto');
-                                        
                                         display.classList.remove('hidden');
                                         texto.innerText = categoria;
                                         display.className = `mt-2 text-sm font-medium ${cor}`;

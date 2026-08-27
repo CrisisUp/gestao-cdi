@@ -66,7 +66,7 @@
                     <div class="overflow-x-auto">
                         <table class="w-full border-collapse border border-slate-300 dark:border-slate-700">
                             <thead>
-                                <tr class="bg-slate-50 dark:bg-slate-800 text-[10px] uppercase">
+                                <tr class="bg-slate-50 dark:bg-slate-800 text-xs uppercase">
                                     <th rowspan="2" class="border border-slate-300 dark:border-slate-700 p-2 font-black text-slate-700 dark:text-slate-300">Discriminação</th>
                                     <th colspan="3" class="border border-slate-300 dark:border-slate-700 p-2 font-black text-slate-700 dark:text-slate-300">60 a 64 anos</th>
                                     <th colspan="3" class="border border-slate-300 dark:border-slate-700 p-2 font-black text-slate-700 dark:text-slate-300">65 a 69 anos</th>
@@ -349,9 +349,9 @@
                                 <table class="w-full text-left border-collapse">
                                     <thead>
                                         <tr class="bg-slate-50 dark:bg-slate-800/50">
-                                            <th class="p-3 text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase border-b border-slate-200 dark:border-slate-700">Usuário</th>
-                                            <th class="p-3 text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase border-b border-slate-200 dark:border-slate-700">Tempo na Instituição</th>
-                                            <th class="p-3 text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase border-b border-slate-200 dark:border-slate-700">Motivo da Saída</th>
+                                            <th class="p-3 text-xs font-black text-slate-500 dark:text-slate-400 uppercase border-b border-slate-200 dark:border-slate-700">Usuário</th>
+                                            <th class="p-3 text-xs font-black text-slate-500 dark:text-slate-400 uppercase border-b border-slate-200 dark:border-slate-700">Tempo na Instituição</th>
+                                            <th class="p-3 text-xs font-black text-slate-500 dark:text-slate-400 uppercase border-b border-slate-200 dark:border-slate-700">Motivo da Saída</th>
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-slate-100 dark:divide-slate-800">

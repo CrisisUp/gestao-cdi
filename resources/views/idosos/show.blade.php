@@ -14,7 +14,7 @@
                     {{ __('Prontuário: ') }} {{ $idoso->nome }}
                 </h2>
                 @if($idoso->data_desligamento)
-                    <span class="px-3 py-1 bg-rose-600 text-white text-[10px] font-black uppercase rounded-full shadow-sm animate-pulse">
+                    <span class="px-3 py-1 bg-rose-600 text-white text-xs font-black uppercase rounded-full shadow-sm animate-pulse">
                         Cadastro Desligado
                     </span>
                 @endif
@@ -99,14 +99,14 @@
                             
                             <div class="mt-4 flex flex-col gap-2">
                                 <div>
-                                    <span class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Dependência</span>
+                                    <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Dependência</span>
                                     <span class="inline-flex items-center px-4 py-1 rounded-full text-sm font-black bg-slate-900 dark:bg-slate-800 text-white dark:text-slate-200 uppercase tracking-tighter shadow-sm border dark:border-slate-700">
                                         Grau {{ $idoso->grau_dependencia }}
                                     </span>
                                 </div>
                                 <div>
-                                    <span class="block text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Gênero</span>
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase border border-slate-200 dark:border-slate-700">
+                                    <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Gênero</span>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 uppercase border border-slate-200 dark:border-slate-700">
                                         {{ $idoso->sexo_texto }}
                                     </span>
                                 </div>
@@ -218,7 +218,7 @@
                                 <div class="p-4 rounded-lg border {{ $enc->prioridade == 'urgente' ? 'bg-red-50 dark:bg-red-900/20 border-red-100 dark:border-red-900/30' : 'bg-slate-50 dark:bg-slate-800 border-slate-100 dark:border-slate-700' }}">
                                     <div class="flex justify-between items-start mb-2">
                                         <div>
-                                            <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded {{ $enc->prioridade == 'urgente' ? 'bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400' }}">
+                                            <span class="text-xs font-bold uppercase px-2 py-0.5 rounded {{ $enc->prioridade == 'urgente' ? 'bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-400' }}">
                                                 {{ $enc->prioridade }}
                                             </span>
                                             <h4 class="text-sm font-bold text-slate-800 dark:text-slate-100 mt-1">{{ $enc->instituicao_destino }}</h4>

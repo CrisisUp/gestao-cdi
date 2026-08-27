@@ -41,14 +41,14 @@
                                         <td class="px-6 py-4 font-mono text-xs">{{ $log->created_at->format('d/m/Y H:i:s') }}</td>
                                         <td class="px-6 py-4">
                                             <div class="flex items-center">
-                                                <div class="h-7 w-7 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center mr-2 text-[10px] font-bold text-slate-500">
+                                                <div class="h-7 w-7 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center mr-2 text-xs font-bold text-slate-500">
                                                     {{ substr($log->user->name ?? 'S', 0, 1) }}
                                                 </div>
                                                 <span class="font-medium">{{ $log->user->name ?? 'Sistema' }}</span>
                                             </div>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider
+                                            <span class="px-2.5 py-0.5 rounded-full text-xs font-black uppercase tracking-wider
                                                 {{ $log->action == 'created' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400' : '' }}
                                                 {{ $log->action == 'updated' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : '' }}
                                                 {{ $log->action == 'deleted' || $log->action == 'soft_deleted' ? 'bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-400' : '' }}">
@@ -65,7 +65,7 @@
                                                         Ver Detalhes
                                                         <svg class="w-3 h-3 ml-1 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                                                     </summary>
-                                                    <div class="mt-3 p-4 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-slate-800 text-[10px] leading-relaxed shadow-inner overflow-hidden">
+                                                    <div class="mt-3 p-4 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-100 dark:border-slate-800 text-xs leading-relaxed shadow-inner overflow-hidden">
                                                         <div class="mb-2"><strong class="text-rose-600 dark:text-rose-400 uppercase">ANTERIOR:</strong> <code class="text-slate-600 dark:text-slate-400 break-all">{{ json_encode($log->old_values, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</code></div>
                                                         <div><strong class="text-emerald-600 dark:text-emerald-400 uppercase">ATUALIZADO:</strong> <code class="text-slate-600 dark:text-slate-400 break-all">{{ json_encode($log->new_values, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</code></div>
                                                     </div>

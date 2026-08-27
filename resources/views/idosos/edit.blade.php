@@ -117,7 +117,7 @@
                                         <img class="h-16 w-16 object-cover rounded-full border border-slate-200 shadow-sm mb-2" src="{{ asset('storage/' . $idoso->foto) }}" alt="Foto atual">
                                         <div class="flex items-center space-x-1">
                                             <input type="checkbox" name="remover_foto" id="remover_foto" value="1" class="rounded border-slate-300 text-rose-600 focus:ring-rose-500">
-                                            <label for="remover_foto" class="text-[10px] font-bold text-rose-600 uppercase">Remover</label>
+                                            <label for="remover_foto" class="text-xs font-bold text-rose-600 uppercase">Remover</label>
                                         </div>
                                     @else
                                         <div class="h-16 w-16 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 border border-slate-200">

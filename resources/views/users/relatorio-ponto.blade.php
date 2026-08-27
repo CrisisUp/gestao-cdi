@@ -77,7 +77,7 @@
                                         <td class="py-4 px-4 text-sm font-medium text-slate-700 dark:text-slate-300">
                                             {{ \Carbon\Carbon::parse($ponto->data)->format('d/m/Y') }}
                                         </td>
-                                        <td class="py-4 px-4 text-sm text-slate-500 dark:text-slate-400 uppercase font-bold text-[10px]">
+                                        <td class="py-4 px-4 text-sm text-slate-500 dark:text-slate-400 uppercase font-bold text-xs">
                                             {{ \Carbon\Carbon::parse($ponto->data)->locale('pt_BR')->dayName }}
                                         </td>
                                         <td class="py-4 px-4 text-sm font-bold text-emerald-700 dark:text-emerald-400">
