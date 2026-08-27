@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>404 — Não encontrado | Gestão CDI</title>
+    <title>Página Não Encontrada — Gestão CDI</title>
     @vite(['resources/css/app.css'])
 </head>
-<body class="font-sans bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex items-center justify-center">
+<body class="font-sans antialiased bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-screen flex items-center justify-center">
     <div class="text-center px-6">
         <div class="text-8xl font-black text-emerald-600 dark:text-emerald-400 mb-4">404</div>
         <h1 class="text-2xl font-bold mb-2">Página não encontrada</h1>

@@ -19,6 +19,7 @@
         <link rel="canonical" href="{{ url()->current() }}">
         <link rel="manifest" href="/manifest.json">
         <link rel="apple-touch-icon" href="/favicon.ico">
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
         <title>{{ $pageTitle ?? config('app.name', 'Gestão CDI') }}</title>
 

@@ -1,77 +1,109 @@
-# Gestão CDI - Centro de Dia para Idosos 🏥👴👵
+# 🏥 Gestão CDI
 
-Este é um sistema web profissional desenvolvido com o ecossistema **Laravel 12** e **Tailwind CSS v4**, especializado no gerenciamento completo de Centros de Dia para Idosos (CDI). O sistema foca em acessibilidade, segurança de dados e eficiência operacional para equipes de assistência social e saúde.
+Sistema de gestão para **Centros de Dia para Idosos (CDI)** — cadastro, frequência, atividades, encaminhamentos, relatórios e controle de equipe.
 
----
-
-## 🚀 Funcionalidades Principais
-
-### 📋 Módulo de Idosos (Beneficiários)
-
-* **Cadastro Visual:** Registro com upload de foto para identificação rápida.
-* **Privacidade:** Máscaras dinâmicas de CPF/NIS alinhadas com a LGPD.
-* **Prontuário Digital:** Ficha técnica de saúde, medicamentos e contatos de emergência.
-* **Geração de Registro:** Código único automático (Ex: `CDI-2026-0001`).
-
-### ✅ Operacional e Frequência
-
-* **Chamada Inteligente:** Registro de presença/ausência em lote para oficinas e atividades.
-* **Ponto da Equipe:** Controle de jornada dos funcionários com relatórios mensais.
-* **Timeline:** Auditoria automática de todas as alterações feitas nos registros.
-
-### 📄 Relatórios Profissionais
-
-* **PDFs Oficiais:** Geração de relatórios de movimentação mensal (Controle Social).
-* **Exportação BI:** Extração de dados em CSV para análise em Excel.
-* **Impressão:** Layouts otimizados para prontuários físicos.
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-* **Backend:** PHP 8.4 + Laravel 12
-* **Frontend:** Tailwind CSS v4 + Alpine.js
-* **Banco de Dados:** SQLite (Padronizado para portabilidade)
-* **Infra:** Docker (PHP-Apache)
-
----
-
-## 🧪 Qualidade e Testes Automatizados
-
-O sistema é protegido por uma suíte robusta de **37 testes automatizados** (Feature e Unit tests), garantindo que as regras de negócio críticas nunca falhem:
-
-* **Relatórios Oficiais:** Validação matemática rigorosa dos cálculos de movimentação mensal e saldos para o Controle Social.
-* **Geração de Códigos:** Garantia de integridade no formato sequencial único (`CDI-AAAA-NNNN`).
-* **Ponto da Equipe:** Testes de registro de jornada, prevenção de duplicidade e exportação de PDF.
-* **Segurança:** Verificação completa de autenticação, permissões de administrador e proteção de dados (LGPD).
-
-Para validar a integridade do sistema, basta rodar:
+## 🚀 Início rápido
 
 ```bash
-php artisan test
+make setup    # Instala tudo e popula o banco
+make dev      # Roda o servidor (porta 8000)
 ```
 
----
+**Login:** `admin@cdi.com.br` / `password`
 
-## 💻 Instalação Rápida (Docker)
+## 📋 Comandos úteis
 
-Para começar agora mesmo, utilize o Docker Desktop no seu Windows:
+| Comando | O que faz |
+|---------|-----------|
+| `make setup` | Instala deps, cria .env, migra, popula banco, builda assets |
+| `make dev` | Roda `artisan serve` + `vite` em paralelo |
+| `make test` | Roda testes PHPUnit (123 testes) |
+| `make test-js` | Roda testes frontend Vitest (20 testes) |
+| `make test-e2e` | Roda testes E2E Playwright (21 testes) |
+| `make seed` | Popula banco com dados de teste |
+| `make fresh` | Reseta e refaz o banco do zero |
+
+## 🧪 Testes
 
 ```bash
-# 1. Clone o projeto
-git clone https://github.com/seu-usuario/gestao-cdi.git
-
-# 2. Configure o ambiente
-cp .env.example .env
-docker-compose up -d --build
-
-# 3. Prepare o banco
-docker exec -it gestao-cdi-app php artisan key:generate
-docker exec -it gestao-cdi-app php artisan migrate
-docker exec -it gestao-cdi-app php artisan storage:link
+make test          # PHPUnit: 123 testes, 272 asserts
+make test-js       # Vitest: 20 testes (theme, masks)
+make test-e2e      # Playwright: 21 testes (browser real)
 ```
 
-Para instruções detalhadas de instalação manual (Laragon/Windows), consulte o **[Guia de Instalação Completo](README_INSTALACAO.md)**.
+### Cobertura
 
----
-&copy; 2026 — Gestão CDI. Sistema profissional para o cuidado e assistência à pessoa idosa.
+| Área | Testes | O que valida |
+|------|--------|-------------|
+| Unit (Models) | 21 | Accessors, scopes, boot, soft delete |
+| Unit (Services) | 6 | Dashboard stats, CSV export |
+| Unit (Traits) | 6 | Auditoria automática (Loggable) |
+| Unit (Requests) | 15 | Validação de formulários |
+| Unit (Auth) | 6 | Gate admin-access |
+| Unit (Controllers) | 14 | Ponto, frequência, atividades, encaminhamentos |
+| Unit (Commands) | 4 | Artisan commands |
+| Feature (Auth) | 16 | Login, registro, reset, verificação |
+| Feature (CRUD) | 8 | Idosos, presenca equipe |
+| Feature (Reports) | 16 | Relatório de movimentação matemático |
+| JS Unit | 20 | Theme store, masks (CPF, NIS, telefone) |
+| E2E | 21 | Fluxos completos em browser Chromium |
+
+## 🏗️ Arquitetura
+
+- **Framework:** Laravel 12 (PHP 8.4+)
+- **Auth:** Laravel Breeze (Blade + Alpine.js)
+- **CSS:** Tailwind CSS 4
+- **Build:** Vite 8
+- **Database:** SQLite (padrão)
+- **Testes:** PHPUnit 11 + Vitest + Playwright
+
+### Estrutura
+
+```
+app/
+├── Console/Commands/    → Artisan commands (gerar códigos, promover admin)
+├── Http/Controllers/    → 10 controllers (Auth + 7 de negócio + Dashboard + Profile)
+├── Http/Requests/       → 6 Form Requests (validação)
+├── Models/              → 7 models (User, Idoso, Atividade, Frequencia, etc)
+├── Services/            → 2 services (DashboardService, ExportService)
+└── Traits/              → 1 trait (Loggable - auditoria)
+
+resources/views/
+├── errors/              → 404, 403, 500 customizados
+├── layouts/             → app, guest, navigation
+├── components/          → 15 componentes Blade reutilizáveis
+└── (módulos)/           → idosos, atividades, frequencia, etc
+
+tests/
+├── Unit/                → Models, Services, Traits, Requests, Auth, Controllers, Commands
+├── Feature/             → Auth, CRUD, Relatórios
+├── js/                  → Theme, Masks (Vitest)
+└── e2e/                 → Auth, Dashboard, Idosos, Atividades, etc (Playwright)
+```
+
+## 📱 Mobile
+
+- Touch targets 44px mínimo
+- Theme toggle disponível em mobile
+- Menu responsivo com transição animada
+- Gráficos com altura responsiva
+- Manifest.json para instalação como app
+
+## 🔒 Segurança
+
+- Rate limiting 5/min em login e registro
+- Soft deletes em idosos (dados nunca são perdidos)
+- Logs de auditoria em todas as ações (criar/atualizar/deletar)
+- Export CSV dos logs para análise
+- Gate `admin-access` para rotas administrativas
+- CSRF protegido em todos os formulários
+
+## 🐳 Docker
+
+```bash
+docker compose up -d    # Sobe PHP 8.4 + Apache
+```
+
+## 📄 Licença
+
+Projeto privado — Gestão CDI

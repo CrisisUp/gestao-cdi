@@ -148,7 +148,7 @@
                                         <div class="flex items-center">
                                             <div class="h-12 w-12 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 dark:text-slate-600 mr-4 border border-slate-200 dark:border-slate-700 shadow-sm">
                                                 @if($idoso->foto)
-                                                    <img src="{{ asset('storage/' . $idoso->foto) }}" class="h-full w-full object-cover {{ $idoso->data_desligamento ? 'grayscale' : '' }}" alt="">
+                                                    <img src="{{ asset('storage/' . $idoso->foto) }}" loading="lazy" class="h-full w-full object-cover {{ $idoso->data_desligamento ? 'grayscale' : '' }}" alt="Foto de {{ $idoso->nome }}">
                                                 @else
                                                     <span class="text-xl font-black text-slate-600 dark:text-slate-400" aria-hidden="true">{{ strtoupper(substr($idoso->nome, 0, 1)) }}</span>
                                                 @endif

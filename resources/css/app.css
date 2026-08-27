@@ -106,3 +106,13 @@ nav {
 header {
     @apply border-b-2 border-slate-300 dark:border-slate-800;
 }
+
+/* Print styles */
+@media print {
+    nav, footer, .pagination, [x-cloak] { display: none !important; }
+    body { background: white !important; color: black !important; }
+    .bg-white, .bg-slate-50, .bg-slate-100 { background: white !important; }
+    table { page-break-inside: auto; }
+    tr { page-break-inside: avoid; }
+    a { text-decoration: underline; color: black !important; }
+}

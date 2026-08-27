@@ -38,7 +38,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <x-input-label for="nome" :value="__('Nome Completo')" />
-                                    <x-text-input id="nome" name="nome" :isError="$errors->has('nome')" type="text" class="mt-1 block w-full" :value="old('nome')" required autofocus />
+                                    <x-text-input id="nome" name="nome" :isError="$errors->has('nome')" type="text" class="mt-1 block w-full" :value="old('nome')" required autofocus autocomplete="name" />
                                     <x-input-error class="mt-2" :messages="$errors->get('nome')" />
                                 </div>
                                 <div>
@@ -145,7 +145,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <x-input-label for="contato_emergencia_nome" :value="__('Nome do Responsável')" />
-                                    <x-text-input id="contato_emergencia_nome" name="contato_emergencia_nome" :isError="$errors->has('contato_emergencia_nome')" type="text" class="mt-1 block w-full" :value="old('contato_emergencia_nome')" required />
+                                    <x-text-input id="contato_emergencia_nome" name="contato_emergencia_nome" :isError="$errors->has('contato_emergencia_nome')" type="text" class="mt-1 block w-full" :value="old('contato_emergencia_nome')" required autocomplete="off" />
                                     <x-input-error class="mt-2" :messages="$errors->get('contato_emergencia_nome')" />
                                 </div>
                                 <div>
