@@ -153,8 +153,8 @@
                                                     <span class="text-xl font-black text-slate-600 dark:text-slate-400" aria-hidden="true">{{ strtoupper(substr($idoso->nome, 0, 1)) }}</span>
                                                 @endif
                                             </div>
-                                            <div class="flex flex-col">
-                                                <div class="text-xl font-black {{ $idoso->data_desligamento ? 'text-slate-500 dark:text-slate-400 line-through' : 'text-slate-900 dark:text-slate-100' }} leading-tight">
+                                            <div class="flex flex-col min-w-0">
+                                                <div class="text-xl font-black {{ $idoso->data_desligamento ? 'text-slate-500 dark:text-slate-400 line-through' : 'text-slate-900 dark:text-slate-100' }} leading-tight truncate">
                                                     {{ $idoso->nome }}
                                                 </div>
                                                 <div class="flex mt-2 space-x-2">
@@ -194,16 +194,16 @@
                                         <div class="text-xs text-slate-800 dark:text-slate-300 font-black font-mono mt-1">NIS: {{ $idoso->nis_masked }}</div>
                                     </td>
                                     <td class="px-6 py-4 text-center">
-                                        <div class="flex items-center justify-center space-x-5">
-                                            <a href="{{ route('idoso.show', $idoso) }}" 
-                                                class="text-slate-400 dark:text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded" 
+                                        <div class="flex items-center justify-center space-x-1 sm:space-x-5">
+                                            <a href="{{ route('idoso.show', $idoso) }}"
+                                                class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-slate-400 dark:text-slate-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded"
                                                 aria-label="Ver prontuário de {{ $idoso->nome }}">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                                                 </svg>
                                             </a>
-                                            <a href="{{ route('idoso.edit', $idoso) }}" 
-                                                class="text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 rounded" 
+                                            <a href="{{ route('idoso.edit', $idoso) }}"
+                                                class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
                                                 aria-label="Editar cadastro de {{ $idoso->nome }}">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>

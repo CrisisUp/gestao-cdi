@@ -111,7 +111,7 @@
                         </svg>
                         Movimentação Mensal (Últimos 6 meses)
                     </h4>
-                    <div class="h-64">
+                    <div class="h-48 sm:h-64">
                         <canvas id="movimentacaoChart"></canvas>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
                         </svg>
                         Perfil Etário (Faixas)
                     </h4>
-                    <div class="h-64">
+                    <div class="h-48 sm:h-64">
                         <canvas id="faixasChart"></canvas>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                         </svg>
                         Grau de Dependência
                     </h4>
-                    <div class="h-64">
+                    <div class="h-48 sm:h-64">
                         <canvas id="dependenciaChart"></canvas>
                     </div>
                 </div>
@@ -152,7 +152,7 @@
                         </svg>
                         Adesão por Oficina / Atividade
                     </h4>
-                    <div class="h-64">
+                    <div class="h-48 sm:h-64">
                         <canvas id="atividadesChart"></canvas>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
     </div>
 
     @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Cores padrão CDI

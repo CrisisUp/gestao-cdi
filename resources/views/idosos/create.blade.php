@@ -8,7 +8,7 @@
     </x-slot>
 
     <x-slot name="header">
-        <div class="flex justify-between items-center">
+        <div class="flex flex-wrap justify-between items-center gap-2">
             <h2 class="font-semibold text-xl text-slate-800 leading-tight">
                 {{ __('Cadastrar Novo Idoso') }}
             </h2>
@@ -178,7 +178,7 @@
                             </div>
                         </div>
 
-                        <div class="pt-8 flex items-center gap-4">
+                        <div class="pt-8 flex flex-wrap items-center gap-4">
                             <x-primary-button class="bg-emerald-700 hover:bg-emerald-800">
                                 {{ __('Finalizar Cadastro') }}
                             </x-primary-button>

@@ -1,0 +1,17 @@
+{
+    "name": "Gestão CDI",
+    "short_name": "Gestão CDI",
+    "description": "Sistema de Gestão para Centro de Dia para Idosos",
+    "start_url": "/dashboard",
+    "display": "standalone",
+    "theme_color": "#059669",
+    "background_color": "#f8fafc",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "64x64",
+            "type": "image/x-icon"
+        }
+    ]
+}

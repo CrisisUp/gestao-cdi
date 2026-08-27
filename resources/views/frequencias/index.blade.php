@@ -42,7 +42,7 @@
 
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm text-left text-slate-600 dark:text-slate-300">
-                            <thead class="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 text-xs text-slate-400 dark:text-slate-500 uppercase font-bold">
+                            <thead class="bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 text-xs text-slate-400 dark:text-slate-500 uppercase font-bold sticky top-0 z-10">
                                 <tr>
                                     <th class="px-6 py-4 w-20 text-center">Presente</th>
                                     <th class="px-6 py-4">Idoso</th>
@@ -59,9 +59,9 @@
                                     @endphp
                                     <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                                         <td class="px-6 py-4 text-center">
-                                            <input type="checkbox" name="presencas[{{ $idoso->id }}]" value="1" 
+                                            <input type="checkbox" name="presencas[{{ $idoso->id }}]" value="1"
                                                 {{ $isPresente ? 'checked' : '' }}
-                                                class="w-6 h-6 rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-emerald-600 focus:ring-emerald-500 transition-all cursor-pointer">
+                                                class="w-6 h-6 min-h-[44px] min-w-[44px] rounded border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-emerald-600 focus:ring-emerald-500 transition-all cursor-pointer">
                                         </td>
                                         <td class="px-6 py-4 text-lg font-black text-slate-900 dark:text-slate-100">
                                             {{ $idoso->nome }}
