@@ -149,6 +149,13 @@
         color: var(--color-text);
     }
 
+    /* ── Skeleton Loading ── */
+    .skeleton {
+        @apply animate-pulse rounded-lg;
+        background: linear-gradient(90deg, var(--color-surface-alt) 25%, color-mix(in srgb, var(--color-surface-alt) 60%, var(--color-border)) 50%, var(--color-surface-alt) 75%);
+        background-size: 200% 100%;
+    }
+
     /* ── Badges ── */
     .badge {
         @apply inline-flex items-center px-3 py-1 rounded-md text-[11px] font-black uppercase tracking-widest border-2 shadow-sm;

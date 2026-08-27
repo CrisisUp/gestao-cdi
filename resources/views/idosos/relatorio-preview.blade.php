@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-slate-800 leading-tight">
+            <h1 class="font-semibold text-xl text-slate-800 leading-tight">
                 {{ __('Prévia do Relatório: ') }} {{ $idoso->nome }}
-            </h2>
+            </h1>
             <a href="{{ route('idoso.show', $idoso) }}" class="inline-flex items-center px-4 py-2 bg-white border border-slate-200 rounded-md font-semibold text-xs text-slate-700 uppercase tracking-widest hover:bg-slate-50 focus:outline-none transition ease-in-out duration-150 shadow-sm">
                 Voltar ao Prontuário
             </a>
@@ -57,7 +57,7 @@
                     
                     <!-- Simulação do Cabeçalho do PDF -->
                     <div class="text-center border-b-2 border-emerald-500 pb-6 mb-8">
-                        <h1 class="text-2xl font-bold text-slate-900">Gestão CDI - Centro de Dia para Idosos</h1>
+                        <h2 class="text-2xl font-bold text-slate-900">Gestão CDI - Centro de Dia para Idosos</h2>
                         <p class="text-slate-500 font-medium">Relatório Mensal de Frequência</p>
                     </div>
 

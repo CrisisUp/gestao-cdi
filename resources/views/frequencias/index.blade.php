@@ -7,9 +7,9 @@
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
+            <h1 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
                 {{ __('Frequência Diária') }}
-            </h2>
+            </h1>
             <div class="flex items-center space-x-4">
                 <form action="{{ route('frequencia.index') }}" method="GET" class="flex items-center space-x-2">
                     <x-text-input type="date" name="data" :isError="$errors->has('data')" value="{{ $data }}" class="!py-1.5 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-300" onchange="this.form.submit()" />
@@ -26,7 +26,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('frequencia.store') }}" method="POST">
+            <form action="{{ route('frequencia.store') }}" method="POST" x-data="{ loading: false }">
                 @csrf
                 <input type="hidden" name="data" value="{{ $data }}">
 
@@ -100,8 +100,9 @@
 
                     @if($idosos->isNotEmpty())
                         <div class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800">
-                            <x-primary-button class="bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 px-8 py-3">
-                                Salvar Lista de Presença
+                            <x-primary-button class="bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 px-8 py-3" @click="loading = true" :disabled="loading" x-bind:class="loading && 'opacity-50 cursor-not-allowed'">
+                                <span x-show="!loading">Salvar Lista de Presença</span>
+                                <span x-show="loading" x-cloak>Salvando...</span>
                             </x-primary-button>
                         </div>
                     @endif

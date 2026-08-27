@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
+        <h1 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
             {{ __('Painel de Controle') }}
-        </h2>
+        </h1>
     </x-slot>
 
     <div class="py-12">
@@ -30,9 +30,9 @@
                     
                     <div class="mt-6 md:mt-0 flex space-x-3">
                         @if(!$meuPonto)
-                            <form action="{{ route('ponto.entrada') }}" method="POST">
+                            <form action="{{ route('ponto.entrada') }}" method="POST" x-data="{ loading: false }">
                                 @csrf
-                                <button type="submit" class="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-sm transition-all shadow-lg hover:scale-105 active:scale-95">
+                                <button type="submit" @click="loading = true" :disabled="loading" class="inline-flex items-center px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-sm transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                                     </svg>
@@ -40,9 +40,9 @@
                                 </button>
                             </form>
                         @elseif(!$meuPonto->saida)
-                            <form action="{{ route('ponto.saida') }}" method="POST">
+                            <form action="{{ route('ponto.saida') }}" method="POST" x-data="{ loading: false }">
                                 @csrf
-                                <button type="submit" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold text-sm transition-all shadow-lg hover:scale-105 active:scale-95">
+                                <button type="submit" @click="loading = true" :disabled="loading" class="inline-flex items-center px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold text-sm transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                                     </svg>

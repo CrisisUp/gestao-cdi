@@ -9,9 +9,9 @@
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
+            <h1 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
                 {{ __('Editar Profissional') }}
-            </h2>
+            </h1>
             <div class="flex items-center space-x-3">
                 <a href="{{ route('user.index') }}" class="inline-flex items-center px-4 py-2 bg-slate-800 dark:bg-slate-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-slate-900 dark:hover:bg-slate-600 transition shadow-sm">
                     Voltar

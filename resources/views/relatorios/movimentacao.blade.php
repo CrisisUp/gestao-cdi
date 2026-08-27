@@ -8,9 +8,9 @@
     </x-slot>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
+        <h1 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
             {{ __('Relatório de Movimentação (Controle Social)') }}
-        </h2>
+        </h1>
     </x-slot>
 
     <div class="py-12">

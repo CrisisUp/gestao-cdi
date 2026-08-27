@@ -7,9 +7,9 @@
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
+            <h1 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
                 {{ __('Idosos Atendidos') }}
-            </h2>
+            </h1>
             <a href="{{ route('idoso.create') }}" class="inline-flex items-center px-4 py-2 bg-emerald-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-800 focus:outline-none transition ease-in-out duration-150 shadow-sm">
                 + Novo Cadastro
             </a>

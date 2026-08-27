@@ -9,9 +9,9 @@
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-slate-800 leading-tight">
+            <h1 class="font-semibold text-xl text-slate-800 leading-tight">
                 {{ $atividade->nome }}
-            </h2>
+            </h1>
             <form action="{{ route('atividade.destroy', $atividade) }}" method="POST" onsubmit="return confirm('Excluir esta atividade permanentemente?')">
                 @csrf
                 @method('DELETE')

@@ -11,9 +11,9 @@
 
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-slate-800 leading-tight">
+            <h1 class="font-semibold text-xl text-slate-800 leading-tight">
                 {{ __('Editar Cadastro: ') }} {{ $idoso->nome }}
-            </h2>
+            </h1>
             <a href="{{ route('idoso.show', $idoso) }}" class="inline-flex items-center px-4 py-2 bg-slate-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-slate-900 focus:outline-none transition ease-in-out duration-150 shadow-sm">
                 Voltar ao Prontuário
             </a>

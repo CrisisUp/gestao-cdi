@@ -10,9 +10,9 @@
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                <h2 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
+                <h1 class="font-semibold text-xl text-slate-800 dark:text-slate-100 leading-tight">
                     {{ __('Prontuário: ') }} {{ $idoso->nome }}
-                </h2>
+                </h1>
                 @if($idoso->data_desligamento)
                     <span class="px-3 py-1 bg-rose-600 text-white text-xs font-black uppercase rounded-full shadow-sm animate-pulse">
                         Cadastro Desligado
@@ -75,7 +75,7 @@
 
             <!-- Cabeçalho Exclusivo para Impressão -->
             <div class="hidden print:block text-center border-b-2 border-slate-800 pb-6 mb-8">
-                <h1 class="text-2xl font-bold text-slate-900 uppercase">Gestão CDI - Centro de Dia para Idosos</h1>
+                <h2 class="text-2xl font-bold text-slate-900 uppercase">Gestão CDI - Centro de Dia para Idosos</h2>
                 <p class="text-sm font-bold text-slate-500">Prontuário Individual do Beneficiário</p>
                 <p class="text-xs text-slate-400 mt-1">Impresso em {{ date('d/m/Y H:i') }}</p>
             </div>

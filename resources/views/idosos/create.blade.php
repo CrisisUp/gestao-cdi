@@ -9,9 +9,9 @@
 
     <x-slot name="header">
         <div class="flex flex-wrap justify-between items-center gap-2">
-            <h2 class="font-semibold text-xl text-slate-800 leading-tight">
+            <h1 class="font-semibold text-xl text-slate-800 leading-tight">
                 {{ __('Cadastrar Novo Idoso') }}
-            </h2>
+            </h1>
             <a href="{{ route('idoso.index') }}" class="inline-flex items-center px-4 py-2 bg-slate-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-slate-900 focus:outline-none transition ease-in-out duration-150 shadow-sm">
                 Listar Todos
             </a>
@@ -22,7 +22,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-xl border border-slate-200">
                 <div class="p-8 text-slate-900">
-                    <form action="{{ route('idoso.store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
+                    <form action="{{ route('idoso.store') }}" method="POST" enctype="multipart/form-data" class="space-y-8" x-data="{ loading: false }">
                         @csrf
 
                         <!-- Dados Pessoais -->
@@ -165,8 +165,9 @@
                         </div>
 
                         <div class="pt-8 flex flex-wrap items-center gap-4">
-                            <x-primary-button class="bg-emerald-700 hover:bg-emerald-800">
-                                {{ __('Finalizar Cadastro') }}
+                            <x-primary-button class="bg-emerald-700 hover:bg-emerald-800" @click="loading = true" :disabled="loading" x-bind:class="loading && 'opacity-50 cursor-not-allowed'">
+                                <span x-show="!loading">{{ __('Finalizar Cadastro') }}</span>
+                                <span x-show="loading" x-cloak>Salvando...</span>
                             </x-primary-button>
                             <a href="{{ route('idoso.index') }}" class="text-sm text-slate-500 hover:text-slate-800 underline">Cancelar</a>
                         </div>
