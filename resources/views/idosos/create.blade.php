@@ -165,7 +165,7 @@
                         </div>
 
                         <div class="pt-8 flex flex-wrap items-center gap-4">
-                            <x-primary-button class="bg-emerald-700 hover:bg-emerald-800" @click="loading = true" :disabled="loading" x-bind:class="loading && 'opacity-50 cursor-not-allowed'">
+                            <x-primary-button class="bg-emerald-700 hover:bg-emerald-800" @click="loading = true" :disabled="loading">
                                 <span x-show="!loading">{{ __('Finalizar Cadastro') }}</span>
                                 <span x-show="loading" x-cloak>Salvando...</span>
                             </x-primary-button>

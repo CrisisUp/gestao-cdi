@@ -100,7 +100,7 @@
 
                     @if($idosos->isNotEmpty())
                         <div class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-200 dark:border-slate-800">
-                            <x-primary-button class="bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 px-8 py-3" @click="loading = true" :disabled="loading" x-bind:class="loading && 'opacity-50 cursor-not-allowed'">
+                            <x-primary-button class="bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-700 px-8 py-3" @click="loading = true" :disabled="loading">
                                 <span x-show="!loading">Salvar Lista de Presença</span>
                                 <span x-show="loading" x-cloak>Salvando...</span>
                             </x-primary-button>
