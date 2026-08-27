@@ -109,4 +109,42 @@
             </form>
         </div>
     </div>
+
+    @push('scripts')
+    <script>
+        // Pull-to-refresh simples para mobile
+        (function() {
+            let startY = 0;
+            let pulling = false;
+            const threshold = 100;
+
+            document.addEventListener('touchstart', (e) => {
+                if (window.scrollY === 0) {
+                    startY = e.touches[0].clientY;
+                    pulling = true;
+                }
+            }, { passive: true });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!pulling) return;
+                const diff = e.touches[0].clientY - startY;
+                if (diff > threshold && window.scrollY === 0) {
+                    document.body.style.transform = 'translateY(' + Math.min(diff * 0.3, 40) + 'px)';
+                    document.body.style.transition = 'none';
+                }
+            }, { passive: true });
+
+            document.addEventListener('touchend', () => {
+                if (!pulling) return;
+                pulling = false;
+                document.body.style.transform = '';
+                document.body.style.transition = 'transform 0.3s ease';
+                // Se puxou o suficiente, recarrega
+                if (parseInt(document.body.style.transform?.match(/\d+/)?.[0] || 0) >= 30) {
+                    location.reload();
+                }
+            }, { passive: true });
+        })();
+    </script>
+    @endpush
 </x-app-layout>

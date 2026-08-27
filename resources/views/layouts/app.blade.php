@@ -38,6 +38,13 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Service Worker -->
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            }
+        </script>
     </head>
     <body class="font-sans antialiased text-slate-900 bg-slate-100 dark:bg-slate-950 dark:text-slate-100 selection:bg-emerald-100 transition-colors duration-200">
         <!-- Skip Link -->

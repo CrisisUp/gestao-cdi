@@ -116,3 +116,12 @@ header {
     tr { page-break-inside: avoid; }
     a { text-decoration: underline; color: black !important; }
 }
+
+/* Swipe hint: sombra sutil à direita indica scroll horizontal */
+@media (max-width: 639px) {
+    .overflow-x-auto {
+        position: relative;
+        -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+        mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    }
+}
