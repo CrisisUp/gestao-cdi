@@ -5,119 +5,231 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-/* Ativa o modo escuro baseado na classe .dark no HTML (Tailwind v4) */
+/* Modo escuro baseado na classe .dark (Tailwind v4) */
 @variant dark (&:where(.dark, .dark *));
 
-@theme {
-    /* Fontes */
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+/* ══════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Variáveis semânticas do projeto
+   Altere aqui para mudar a identidade visual inteira.
+   ══════════════════════════════════════════════════════════════ */
 
-    /* Cores Potencializadas (Alto Contraste) */
-    --color-indigo-50: var(--color-slate-100);
-    --color-indigo-100: var(--color-slate-200);
-    --color-indigo-200: var(--color-slate-300);
-    --color-indigo-300: var(--color-slate-400);
-    --color-indigo-400: var(--color-slate-500);
-    --color-indigo-500: var(--color-slate-600);
-    --color-indigo-600: #1e293b; /* Slate 800 - Azul Marinho Profundo */
-    --color-indigo-700: #0f172a; /* Slate 900 - Quase Preto */
-    --color-indigo-800: #020617;
-    --color-indigo-900: #000000;
+:root {
+    /* ── Cores primárias ── */
+    --color-primary: #059669;        /* emerald-600 */
+    --color-primary-hover: #047857;  /* emerald-700 */
+    --color-primary-light: #d1fae5;  /* emerald-100 */
+
+    /* ── Cores semânticas ── */
+    --color-success: #059669;
+    --color-warning: #d97706;
+    --color-danger: #dc2626;
+    --color-info: #2563eb;
+
+    /* ── Superfícies (light mode) ── */
+    --color-bg: #f1f5f9;             /* slate-100 */
+    --color-surface: #ffffff;
+    --color-surface-alt: #f8fafc;    /* slate-50 */
+    --color-text: #0f172a;           /* slate-900 */
+    --color-text-muted: #64748b;     /* slate-500 */
+    --color-border: #e2e8f0;         /* slate-200 */
+
+    /* ── Tipografia ── */
+    --font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-size-base: 112.5%;        /* 18px */
+
+    /* ── Espaçamento ── */
+    --space-xs: 0.25rem;   /* 4px */
+    --space-sm: 0.5rem;    /* 8px */
+    --space-md: 1rem;      /* 16px */
+    --space-lg: 1.5rem;    /* 24px */
+    --space-xl: 2rem;      /* 32px */
+    --space-2xl: 3rem;     /* 48px */
+
+    /* ── Bordas ── */
+    --radius-sm: 0.375rem; /* 6px */
+    --radius-md: 0.5rem;   /* 8px */
+    --radius-lg: 0.75rem;  /* 12px */
+    --radius-xl: 1rem;     /* 16px */
+    --radius-full: 9999px;
+
+    /* ── Sombras ── */
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
+
+/* ── Dark mode: redefine as mesmas variáveis ── */
+:root.dark,
+.dark {
+    --color-bg: #0f172a;             /* slate-900 */
+    --color-surface: #1e293b;        /* slate-800 */
+    --color-surface-alt: #0f172a;    /* slate-900 */
+    --color-text: #f1f5f9;           /* slate-100 */
+    --color-text-muted: #94a3b8;     /* slate-400 */
+    --color-border: #334155;         /* slate-700 */
+}
+
+/* ── Cores do Tailwind theme (compatibilidade) ── */
+@theme {
+    --font-sans: var(--font-family);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BASE
+   ══════════════════════════════════════════════════════════════ */
 
 @layer base {
     html {
-        font-size: 112.5%; 
+        font-size: var(--font-size-base);
     }
     body {
-        /* Fundo um pouco mais "firme" */
-        @apply bg-slate-100 text-slate-900 leading-relaxed dark:bg-slate-950 dark:text-slate-100 transition-colors duration-200;
+        @apply leading-relaxed transition-colors duration-200;
+        background-color: var(--color-bg);
+        color: var(--color-text);
     }
 }
 
+/* ══════════════════════════════════════════════════════════════
+   COMPONENTES REUTILIZÁVEIS
+   ══════════════════════════════════════════════════════════════ */
+
 @layer components {
-    /* Layout */
+    /* ── Layout ── */
     .main-container {
-        @apply flex flex-col min-h-screen bg-slate-100 dark:bg-slate-950;
+        @apply flex flex-col min-h-screen;
+        background-color: var(--color-bg);
     }
 
-    /* Botões com Cores Sólidas e Fortes */
+    /* ── Botões ── */
     .btn-primary {
-        @apply inline-flex items-center px-6 py-3 bg-slate-900 border-2 border-slate-900 rounded-xl font-black text-sm text-white uppercase tracking-widest hover:bg-black dark:bg-slate-800 dark:border-slate-700 dark:hover:bg-slate-700 transition-all shadow-lg active:scale-95;
+        @apply inline-flex items-center px-6 py-3 font-black text-sm text-white uppercase tracking-widest transition-all shadow-lg active:scale-95;
+        background-color: var(--color-primary);
+        border: 2px solid var(--color-primary);
+        border-radius: var(--radius-xl);
+    }
+    .btn-primary:hover {
+        background-color: var(--color-primary-hover);
+        border-color: var(--color-primary-hover);
     }
 
-    .btn-success {
-        @apply inline-flex items-center px-6 py-3 bg-emerald-800 border-2 border-emerald-900 rounded-xl font-black text-sm text-white uppercase tracking-widest hover:bg-emerald-950 dark:bg-emerald-700 dark:border-emerald-800 dark:hover:bg-emerald-600 transition-all shadow-lg active:scale-95;
-    }
-
-    /* Alertas Vibrantes */
+    /* ── Alertas ── */
     .alert-success {
-        @apply p-5 mb-8 text-lg text-white rounded-xl bg-emerald-700 border-2 border-emerald-900 dark:bg-emerald-900/50 dark:border-emerald-700 shadow-md font-bold;
+        @apply p-5 mb-8 text-lg text-white rounded-xl shadow-md font-bold;
+        background-color: var(--color-success);
+        border: 2px solid color-mix(in srgb, var(--color-success) 80%, black);
     }
-
     .alert-error {
-        @apply p-5 mb-8 text-lg text-white rounded-xl bg-red-700 border-2 border-red-900 dark:bg-red-900/50 dark:border-red-700 shadow-md font-bold;
+        @apply p-5 mb-8 text-lg text-white rounded-xl shadow-md font-bold;
+        background-color: var(--color-danger);
+        border: 2px solid color-mix(in srgb, var(--color-danger) 80%, black);
     }
 
-    /* Tabela com Definição Clara */
+    /* ── Tabelas ── */
     .table-container {
-        @apply w-full text-lg text-left text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-900 shadow-xl border-2 border-slate-300 dark:border-slate-800 rounded-2xl overflow-hidden;
+        @apply w-full text-lg text-left overflow-hidden;
+        background-color: var(--color-surface);
+        border: 2px solid var(--color-border);
+        border-radius: var(--radius-xl);
     }
-
-    .table-header {
-        @apply text-sm text-white uppercase bg-slate-800 dark:bg-slate-950 font-black border-b-2 border-slate-900 dark:border-slate-800;
-    }
-
     .table-header-cell {
-        @apply px-8 py-5 tracking-widest;
+        @apply px-6 py-4 text-xs font-black uppercase tracking-widest;
+        background-color: var(--color-surface-alt);
+        border-bottom: 2px solid var(--color-border);
+        color: var(--color-text-muted);
     }
-
     .table-row {
-        @apply bg-white dark:bg-slate-900 border-b-2 border-slate-100 dark:border-slate-800/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/10 transition-colors;
+        @apply transition-colors;
+        border-bottom: 1px solid var(--color-border);
     }
-
+    .table-row:hover {
+        background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
+    }
     .table-cell {
-        @apply px-8 py-6 text-slate-900 dark:text-slate-100 font-bold border-r border-slate-50 dark:border-slate-800/50 last:border-r-0;
+        @apply px-6 py-4 font-bold;
+        color: var(--color-text);
     }
 
-    /* Badges com Cores Fortes (Sólidas) */
+    /* ── Badges ── */
     .badge {
         @apply inline-flex items-center px-3 py-1 rounded-md text-[11px] font-black uppercase tracking-widest border-2 shadow-sm;
     }
     .badge-warning {
-        @apply bg-amber-400 text-amber-950 border-amber-600 dark:bg-amber-500/80 dark:text-amber-100 dark:border-amber-700;
+        background-color: #fef3c7;
+        color: #92400e;
+        border-color: #f59e0b;
     }
     .badge-info {
-        @apply bg-blue-600 text-white border-blue-800 dark:bg-blue-700/80 dark:border-blue-900;
+        background-color: #dbeafe;
+        color: #1e40af;
+        border-color: #3b82f6;
     }
     .badge-success {
-        @apply bg-emerald-600 text-white border-emerald-800 dark:bg-emerald-700/80 dark:border-emerald-900;
+        background-color: #d1fae5;
+        color: #065f46;
+        border-color: #10b981;
     }
     .badge-danger {
-        @apply bg-red-600 text-white border-red-800 dark:bg-red-700/80 dark:border-red-900;
+        background-color: #fee2e2;
+        color: #991b1b;
+        border-color: #ef4444;
     }
 }
 
-/* Headers e Navigation com mais peso */
+/* ══════════════════════════════════════════════════════════════
+   DARK MODE — Badges e alertas
+   ══════════════════════════════════════════════════════════════ */
+
+.dark .badge-warning {
+    background-color: color-mix(in srgb, #f59e0b 20%, transparent);
+    color: #fbbf24;
+    border-color: color-mix(in srgb, #f59e0b 50%, transparent);
+}
+.dark .badge-info {
+    background-color: color-mix(in srgb, #3b82f6 20%, transparent);
+    color: #60a5fa;
+    border-color: color-mix(in srgb, #3b82f6 50%, transparent);
+}
+.dark .badge-success {
+    background-color: color-mix(in srgb, #10b981 20%, transparent);
+    color: #34d399;
+    border-color: color-mix(in srgb, #10b981 50%, transparent);
+}
+.dark .badge-danger {
+    background-color: color-mix(in srgb, #ef4444 20%, transparent);
+    color: #f87171;
+    border-color: color-mix(in srgb, #ef4444 50%, transparent);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   COMPONENTES ESTRUTURAIS
+   ══════════════════════════════════════════════════════════════ */
+
 nav {
-    @apply border-b-4 border-slate-200 dark:border-slate-800 shadow-md;
+    border-bottom: 4px solid var(--color-border);
+    box-shadow: var(--shadow-md);
 }
 
 header {
-    @apply border-b-2 border-slate-300 dark:border-slate-800;
+    border-bottom: 2px solid var(--color-border);
 }
 
-/* Print styles */
+/* ══════════════════════════════════════════════════════════════
+   PRINT
+   ══════════════════════════════════════════════════════════════ */
+
 @media print {
     nav, footer, .pagination, [x-cloak] { display: none !important; }
     body { background: white !important; color: black !important; }
-    .bg-white, .bg-slate-50, .bg-slate-100 { background: white !important; }
+    .table-container { border: 1px solid #ccc; }
     table { page-break-inside: auto; }
     tr { page-break-inside: avoid; }
     a { text-decoration: underline; color: black !important; }
 }
 
-/* Swipe hint: sombra sutil à direita indica scroll horizontal */
+/* ══════════════════════════════════════════════════════════════
+   MOBILE — Swipe hint
+   ══════════════════════════════════════════════════════════════ */
+
 @media (max-width: 639px) {
     .overflow-x-auto {
         position: relative;
