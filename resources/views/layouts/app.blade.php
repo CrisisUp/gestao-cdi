@@ -9,10 +9,18 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <meta name="description" content="Sistema de Gestão para Centro de Dia para Idosos">
 
+        <!-- Open Graph -->
+        <meta property="og:title" content="{{ $ogTitle ?? 'Gestão CDI' }}">
+        <meta property="og:description" content="{{ $ogDescription ?? 'Sistema de gestão para Centro de Dia para Idosos — cadastro, frequência, relatórios e mais.' }}">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="pt_BR">
+        <meta property="og:site_name" content="Gestão CDI">
+
+        <link rel="canonical" href="{{ url()->current() }}">
         <link rel="manifest" href="/manifest.json">
         <link rel="apple-touch-icon" href="/favicon.ico">
 
-        <title>{{ config('app.name', 'Gestão CDI') }}</title>
+        <title>{{ $pageTitle ?? config('app.name', 'Gestão CDI') }}</title>
 
         <!-- Script para evitar flash de cor branca no carregamento -->
         <script>

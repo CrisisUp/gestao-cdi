@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
 
         // Logs de Auditoria
         Route::get('/admin/logs', [ActivityLogController::class, 'index'])->name('admin.logs.index');
+        Route::get('/admin/logs/exportar-csv', [ActivityLogController::class, 'exportCsv'])->name('admin.logs.export-csv');
     });
 
     // Rotas de Perfil (Breeze)
