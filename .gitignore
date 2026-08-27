@@ -26,6 +26,7 @@ yarn-error.log
 /.idea
 /.nova
 /.phpunit.cache
+/test-results
 /.vscode
 /.zed
 
